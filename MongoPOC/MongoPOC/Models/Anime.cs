@@ -5,8 +5,7 @@ namespace MongoPOC.Models
 {
     public class Anime
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonId]        
         public string Id { get; set; }
         [BsonElement("Name")]
         public string Name { get; set; }
