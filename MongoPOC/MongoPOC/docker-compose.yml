@@ -1,0 +1,28 @@
+﻿version: "3"
+
+services:
+  web:
+    restart: always
+    image: mongo-poc:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "22000:80"
+    networks:
+      - mongo-network
+    depends_on:
+      - "mongodb"
+
+  mongodb:
+    image: tutum/mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo-network
+    environment:
+      -  AUTH=no
+
+networks: 
+    mongo-network:
+        driver: bridge

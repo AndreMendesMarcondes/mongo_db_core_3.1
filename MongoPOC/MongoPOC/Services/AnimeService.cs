@@ -11,10 +11,10 @@ namespace MongoPOC.Services
 
         public AnimeService(IAnimestoreDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+            var client = new MongoClient("mongodb://mongodb:27017");
+            var database = client.GetDatabase("AnimestoreDB");
 
-            _animes = database.GetCollection<Anime>(settings.AnimesCollectionName);
+            _animes = database.GetCollection<Anime>("Animes");
         }
 
         public List<Anime> Get() => _animes.Find(anime => true).ToList();
